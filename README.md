@@ -29,4 +29,4 @@ Brain activation maps and PCA loadings were visualized using custom plotting fun
 Due to data access restrictions, the dataset is not included. Code structure and methodology are fully documented.
 
 ## Files
-- `report/` and `code/` : full report (HTML)
+- `report/` and `code/` : synthesised report (HTML)
