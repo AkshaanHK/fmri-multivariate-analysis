@@ -109,7 +109,7 @@ These visualizations illustrate both static and dynamic brain connectivity patte
 
 The core analysis is implemented in:
 
-- [`code/analysis.R`](code/analysis.R)
+- [`analysis.R`](analysis.R)
 
 This script demonstrates:
 
