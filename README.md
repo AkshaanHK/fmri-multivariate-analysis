@@ -154,6 +154,10 @@ The methods used in this project are directly applicable to:
 
 ## Authors
 
-Akshaan Murugesu, Arijan Seipi, Bastien Olivier Mutzner, Munire Hagoose
-Master’s Students in Statistics – University of Geneva
+Akshaan Murugesu  
+Arijan Seipi  
+Bastien Olivier Mutzner  
+Munire Hagoose  
+
+Master’s students in Statistics – University of Geneva
 
