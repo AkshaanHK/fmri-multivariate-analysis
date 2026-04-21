@@ -105,6 +105,22 @@ These visualizations illustrate both static and dynamic brain connectivity patte
 
 ---
 
+## Code
+
+The core analysis is implemented in:
+
+- [`code/analysis.R`](code/analysis.R)
+
+This script demonstrates:
+
+- Dimensionality reduction using PCA
+- Transformation of time series into correlation-based features
+- Clustering of dynamic brain states (CAP analysis)
+
+It reflects the main computational steps behind the results presented in the report.
+
+---
+
 ## Reproducibility
 
 - Code written in R
