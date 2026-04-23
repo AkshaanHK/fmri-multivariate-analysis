@@ -118,7 +118,6 @@ Capture **dynamic brain states** instead of static connectivity.
 
 ```
 ├── analysis.R              # Full pipeline: EDA → PCA → cross-subject PCA → CAP
-├── brain_plots.R           # Brain visualization utilities
 ├── MVA_Project_Synth.pdf   # Report with figures and results
 ├── README.md
 ```
