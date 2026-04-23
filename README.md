@@ -1,163 +1,164 @@
-# fMRI Multivariate Analysis
+# fMRI Functional Connectivity Analysis  
+**Dimensionality Reduction and Dynamic Brain State Modeling**
 
-## Overview
-This project analyzes high-dimensional fMRI data using multivariate statistical methods to extract meaningful patterns of brain activity.
+High-dimensional fMRI analysis using PCA and Co-Activation Pattern (CAP) clustering to study functional connectivity and dynamic brain states from Human Connectome Project data.
 
-The objective is to reduce dimensionality, understand functional connectivity, and identify dynamic brain states from complex time-series data.
+---
+
+## Highlights
+
+- 90 subjects, 100 brain regions (ROIs), ~1150 time points per subject  
+- PCA reduces single-subject data to **13 components for 90% variance retention**  
+- Cross-subject connectivity compressed from **10,000 features to 40 principal components**  
+- CAP analysis identifies **3 interpretable dynamic brain states**  
+- End-to-end analysis pipeline implemented in R  
+
+---
+
+## Project Overview
+
+This project analyzes high-dimensional fMRI time series to extract meaningful patterns of brain activity and connectivity.
+
+Key objectives:
+- Reduce dimensionality of complex neural signals  
+- Compare functional connectivity across subjects  
+- Identify dynamic brain states beyond static correlation structures  
 
 ---
 
 ## Dataset
-The dataset comes from the Human Connectome Project (HCP) and contains:
 
-- 90 subjects
-- 100 brain regions (ROIs)
-- ~1150 time points per subject
-- BOLD signals representing neural activity
+Subset of the Human Connectome Project (HCP) dataset:
 
-Each subject is represented by a matrix of size:
-- 100 (ROIs) × ~1150 (time points)
+- 90 subjects (ages 22–36+)  
+- 100 brain regions (ROIs)  
+- ~1150 time points per subject  
+- BOLD signals (blood-oxygen-level-dependent)  
+- 7 functional networks (e.g., Visual, Default Mode, Salience)
 
-Due to access restrictions, the dataset is not included in this repository.
+Each subject is represented by a matrix:
+- **100 × T** (ROIs × time points)
+
+**Note:** Data not included due to access restrictions.
 
 ---
 
 ## Methods
 
-### 1. Exploratory Data Analysis (EDA)
-- Analysis of time series variability across subjects
-- Visualization of brain signals
-- Study of ROI structure and functional networks
+### 1. Single-Subject PCA
+
+- Applied PCA to individual subject time series  
+- Captures dominant spatial activation patterns  
+
+**Key results:**
+- PC1 explains **57.9%** of variance (global co-activation)  
+- First 5 PCs explain ~80%  
+- 13 PCs explain ~90%  
+- Reconstruction preserves key brain activation patterns  
 
 ---
 
-### 2. PCA (Single Subject Analysis)
-- Applied PCA to reduce dimensionality of one subject’s data
-- Key results:
-  - First 5 principal components explain ~80% of variance
-  - 13 components explain ~90% of total variance
+### 2. Cross-Subject PCA (Connectivity-Based)
 
-- Interpretation:
-  - PC1 captures global brain activation
-  - PC2 reflects opposing activation patterns across regions
-  - PCA reconstruction preserves major activation patterns
+**Challenge:**
+- Variable time series length across subjects  
+- No temporal alignment  
 
----
-
-### 3. PCA Across Subjects
-Challenges:
-- Different number of time points per subject
-- No temporal alignment
-- High dimensionality (N ≫ number of subjects)
-
-Solution:
-- Transform each subject into a ROI–ROI correlation matrix (100 × 100)
-- Vectorize into a 10,000-dimensional vector
-- Build a dataset of size 90 × 10,000
+**Solution:**
+- Compute ROI–ROI correlation matrix (100 × 100) per subject  
+- Vectorize into 10,000-dimensional feature vectors  
+- Build dataset of size **90 × 10,000**
 
 Then:
-- Apply PCA for cross-subject comparison
+- Apply PCA to extract shared connectivity structure  
 
-Results:
-- First 40 components explain ~90% of variance
-- Effective dimensionality reduction of inter-subject variability
-
----
-
-### 4. Co-Activation Pattern (CAP) Analysis
-Goal:
-Capture dynamic brain states instead of static connectivity
-
-Steps:
-- Select top 30% most active time points
-- Apply k-means clustering (k = 3)
-- Analyze resulting clusters
-
-Results:
-- Identification of distinct brain states:
-  - Task-engaged states
-  - Internally oriented states
-  - Global co-activation patterns
+**Results:**
+- 40 PCs explain ~90% of variance  
+- Strong preservation of functional connectivity patterns  
 
 ---
 
-## Key Results
+### 3. Co-Activation Pattern (CAP) Analysis
 
-- PCA effectively reduces dimensionality while preserving structure
-- Reconstruction closely matches original signals
-- Correlation-based PCA allows robust cross-subject comparison
-- CAP analysis reveals dynamic patterns of brain activity
-- Strong within-network correlations confirm functional coherence
+**Objective:**  
+Capture **dynamic brain states** instead of static connectivity.
 
----
+**Pipeline:**
+- Select top 30% most active time points  
+- Cluster using k-means (k = 3, chosen via elbow method)
 
-## Visualizations
+**Results:**
 
-The project includes:
+- **CAP 1 — Task-engaged state**  
+  Strong within-network activity (Somatomotor, Attention, Salience)
 
-- PCA variance explained plots
-- Brain activation maps
-- PCA loadings visualization
-- Correlation matrices
-- CAP heatmaps (brain states)
+- **CAP 2 — Internal processing state**  
+  Increased activity in Default Mode, Limbic, Executive networks  
 
-These visualizations illustrate both static and dynamic brain connectivity patterns.
+- **CAP 3 — Global co-activation state**  
+  Broad positive activation across all networks  
 
 ---
 
-## Code
+## Technical Contributions
 
-The core analysis is implemented in:
+- Built a complete analysis pipeline in R:
+  - Data preprocessing and EDA  
+  - PCA-based dimensionality reduction  
+  - Feature engineering via correlation matrices  
+  - Unsupervised clustering of brain states  
 
-- [`analysis.R`](analysis.R)
-
-This script demonstrates:
-
-- Dimensionality reduction using PCA
-- Transformation of time series into correlation-based features
-- Clustering of dynamic brain states (CAP analysis)
-
-It reflects the main computational steps behind the results presented in the report.
+- Designed a cross-subject representation for non-aligned time series  
+- Implemented CAP analysis without specialized neuroimaging libraries  
+- Produced interpretable visualizations of high-dimensional data  
 
 ---
 
-## Reproducibility
+## Repository Structure
 
-- Code written in R
-- Random seeds used for reproducibility
-- Data not included due to HCP access restrictions
-
----
-
-## Key Takeaways
-
-This project demonstrates:
-
-- Ability to handle high-dimensional time series data
-- Application of PCA and clustering methods
-- Modeling of complex systems
-- Strong data visualization and interpretation skills
-- Transformation of raw signals into meaningful insights
+```
+├── analysis.R              # Full pipeline: EDA → PCA → cross-subject PCA → CAP
+├── brain_plots.R           # Brain visualization utilities
+├── MVA_Project_Synth.pdf   # Report with figures and results
+├── README.md
+```
 
 ---
 
-## Relevance
+## Tech Stack
 
-The methods used in this project are directly applicable to:
+- R  
+- prcomp (PCA)  
+- kmeans (clustering)  
+- ggplot2 (visualization)  
+- pheatmap  
+- gridExtra  
+- patchwork  
 
-- Time series analysis
-- Signal processing
-- High-dimensional data modeling
-- Complex system analysis (e.g. telemetry, engineering systems)
+---
+
+## Why This Project Matters
+
+This project demonstrates the ability to:
+
+- Work with high-dimensional time series data  
+- Perform dimensionality reduction and feature engineering  
+- Apply unsupervised learning to complex signals  
+- Translate raw data into interpretable insights  
+
+**Applications:**
+- Signal processing  
+- Time series modeling  
+- Anomaly detection  
+- High-dimensional data analysis  
 
 ---
 
 ## Authors
 
-Akshaan Murugesu  
-Arijan Seipi  
-Bastien Olivier Mutzner  
-Munire Hagoose  
+- Akshaan Murugesu  
+- Arijan Seipi  
+- Bastien Olivier Mutzner  
+- Munire Hagoose  
 
-Master’s students in Statistics – University of Geneva
-
+MSc Statistics — University of Geneva  
