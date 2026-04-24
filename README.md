@@ -5,6 +5,17 @@ High-dimensional fMRI analysis using PCA and Co-Activation Pattern (CAP) cluster
 
 ---
 
+## Repository Structure
+
+```
+├── MVA_Project_Synth.pdf   # Report with figures and results
+├── README.md
+├── analysis.R              # Full pipeline: EDA → PCA → cross-subject PCA → CAP
+├── brain_plots.R              # R script for brain plots
+```
+
+---
+
 ## Highlights
 
 - 90 subjects, 100 brain regions (ROIs), ~1150 time points per subject  
@@ -111,17 +122,6 @@ Capture **dynamic brain states** instead of static connectivity.
 - Designed a cross-subject representation for non-aligned time series  
 - Implemented CAP analysis without specialized neuroimaging libraries  
 - Produced interpretable visualizations of high-dimensional data  
-
----
-
-## Repository Structure
-
-```
-├── MVA_Project_Synth.pdf   # Report with figures and results
-├── README.md
-├── analysis.R              # Full pipeline: EDA → PCA → cross-subject PCA → CAP
-├── brain_plots.R              # R script for brain plots
-```
 
 ---
 
