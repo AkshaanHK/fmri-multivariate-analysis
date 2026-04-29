@@ -1,4 +1,4 @@
-# fMRI Functional Connectivity Analysis  
+# fMRI Functional Connectivity Analysis
 **Dimensionality Reduction and Dynamic Brain State Modeling**
 
 High-dimensional fMRI analysis using PCA and Co-Activation Pattern (CAP) clustering to study functional connectivity and dynamic brain states from Human Connectome Project data.
@@ -11,18 +11,17 @@ High-dimensional fMRI analysis using PCA and Co-Activation Pattern (CAP) cluster
 ├── MVA_Project_Synth.pdf   # Report with figures and results
 ├── README.md
 ├── analysis.R              # Full pipeline: EDA → PCA → cross-subject PCA → CAP
-├── brain_plots.R              # R script for brain plots
+├── brain_plots.R           # R script for brain plots
 ```
 
 ---
 
 ## Highlights
 
-- 90 subjects, 100 brain regions (ROIs), ~1150 time points per subject  
-- PCA reduces single-subject data to **13 components for 90% variance retention**  
-- Cross-subject connectivity compressed from **10,000 features to 40 principal components**  
-- CAP analysis identifies **3 interpretable dynamic brain states**  
-- End-to-end analysis pipeline implemented in R with the help of AI 
+- 90 subjects, 100 brain regions (ROIs), ~1150 time points per subject
+- PCA reduces single-subject data to **13 components for 90% variance retention**
+- Cross-subject connectivity compressed from **10,000 features to 40 principal components**
+- CAP analysis identifies **3 interpretable dynamic brain states**
 
 ---
 
@@ -31,9 +30,9 @@ High-dimensional fMRI analysis using PCA and Co-Activation Pattern (CAP) cluster
 This project analyzes high-dimensional fMRI time series to extract meaningful patterns of brain activity and connectivity.
 
 Key objectives:
-- Reduce dimensionality of complex neural signals  
-- Compare functional connectivity across subjects  
-- Identify dynamic brain states beyond static correlation structures  
+- Reduce dimensionality of complex neural signals
+- Compare functional connectivity across subjects
+- Identify dynamic brain states beyond static correlation structures
 
 ---
 
@@ -41,16 +40,16 @@ Key objectives:
 
 Subset of the Human Connectome Project (HCP) dataset:
 
-- 90 subjects (ages 22–36+)  
-- 100 brain regions (ROIs)  
-- ~1150 time points per subject  
-- BOLD signals (blood-oxygen-level-dependent)  
+- 90 subjects (ages 22–36+)
+- 100 brain regions (ROIs)
+- ~1150 time points per subject
+- BOLD signals (blood-oxygen-level-dependent)
 - 7 functional networks (e.g., Visual, Default Mode, Salience)
 
 Each subject is represented by a matrix:
 - **100 × T** (ROIs × time points)
 
-**Note:** Data not included due to access restrictions.
+> Data not included due to HCP access restrictions.
 
 ---
 
@@ -58,108 +57,61 @@ Each subject is represented by a matrix:
 
 ### 1. Single-Subject PCA
 
-- Applied PCA to individual subject time series  
-- Captures dominant spatial activation patterns  
+Applied PCA to individual subject time series to capture dominant spatial activation patterns.
 
-**Key results:**
-- PC1 explains **57.9%** of variance (global co-activation)  
-- First 5 PCs explain ~80%  
-- 13 PCs explain ~90%  
-- Reconstruction preserves key brain activation patterns  
+Key results:
+- PC1 explains **57.9%** of variance (global co-activation)
+- First 5 PCs explain ~80%
+- 13 PCs explain ~90%
+- Reconstruction preserves key brain activation patterns
 
 ---
 
 ### 2. Cross-Subject PCA (Connectivity-Based)
 
-**Challenge:**
-- Variable time series length across subjects  
-- No temporal alignment  
+Challenge: variable time series length across subjects with no temporal alignment.
 
-**Solution:**
-- Compute ROI–ROI correlation matrix (100 × 100) per subject  
-- Vectorize into 10,000-dimensional feature vectors  
+Solution:
+- Compute ROI–ROI correlation matrix (100 × 100) per subject
+- Vectorize into 10,000-dimensional feature vectors
 - Build dataset of size **90 × 10,000**
+- Apply PCA to extract shared connectivity structure
 
-Then:
-- Apply PCA to extract shared connectivity structure  
-
-**Results:**
-- 40 PCs explain ~90% of variance  
-- Strong preservation of functional connectivity patterns  
+Results:
+- 40 PCs explain ~90% of variance
+- Strong preservation of functional connectivity patterns
 
 ---
 
 ### 3. Co-Activation Pattern (CAP) Analysis
 
-**Objective:**  
-Capture **dynamic brain states** instead of static connectivity.
+Objective: capture dynamic brain states instead of static connectivity.
 
-**Pipeline:**
-- Select top 30% most active time points  
+Pipeline:
+- Select top 30% most active time points
 - Cluster using k-means (k = 3, chosen via elbow method)
 
-**Results:**
-
-- **CAP 1 — Task-engaged state**  
-  Strong within-network activity (Somatomotor, Attention, Salience)
-
-- **CAP 2 — Internal processing state**  
-  Increased activity in Default Mode, Limbic, Executive networks  
-
-- **CAP 3 — Global co-activation state**  
-  Broad positive activation across all networks  
-
----
-
-## Technical Contributions
-
-- Built a complete analysis pipeline in R with the help of AI:
-  - Data preprocessing and EDA  
-  - PCA-based dimensionality reduction  
-  - Feature engineering via correlation matrices  
-  - Unsupervised clustering of brain states  
-
-- Designed a cross-subject representation for non-aligned time series  
-- Implemented CAP analysis without specialized neuroimaging libraries  
-- Produced interpretable visualizations of high-dimensional data  
+Results:
+- **CAP 1 — Task-engaged state**: strong within-network activity (Somatomotor, Attention, Salience)
+- **CAP 2 — Internal processing state**: increased activity in Default Mode, Limbic, Executive networks
+- **CAP 3 — Global co-activation state**: broad positive activation across all networks
 
 ---
 
 ## Tech Stack
 
-- R  
-- prcomp (PCA)  
-- kmeans (clustering)  
-- ggplot2 (visualization)  
-- pheatmap  
-- gridExtra  
-- patchwork  
+`R` · `prcomp` · `kmeans` · `ggplot2` · `pheatmap` · `gridExtra` · `patchwork`
 
 ---
 
-## Why This Project Matters
+## AI Usage
 
-This project demonstrates the ability to:
-
-- Work with high-dimensional time series data  
-- Perform dimensionality reduction and feature engineering  
-- Apply unsupervised learning to complex signals  
-- Translate raw data into interpretable insights
-- Use AI to enhance code and R pipelines  
-
-**Applications:**
-- Signal processing  
-- Time series modeling  
-- Anomaly detection  
-- High-dimensional data analysis  
+AI tools (Claude, ChatGPT) were used to assist with code debugging, refactoring, and visualisation. All analytical choices, methodology, and interpretations are entirely our own.
 
 ---
 
 ## Authors
 
-- Akshaan Murugesu  
-- Arijan Seipi  
-- Bastien Olivier Mutzner  
-- Munire Hagoose  
+Akshaan Murugesu · Arijan Seipi · Bastien Olivier Mutzner · Munire Hagoose
 
-MSc Statistics — University of Geneva  
+MSc Statistics — University of Geneva
