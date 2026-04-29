@@ -22,7 +22,7 @@ High-dimensional fMRI analysis using PCA and Co-Activation Pattern (CAP) cluster
 - PCA reduces single-subject data to **13 components for 90% variance retention**  
 - Cross-subject connectivity compressed from **10,000 features to 40 principal components**  
 - CAP analysis identifies **3 interpretable dynamic brain states**  
-- End-to-end analysis pipeline implemented in R  
+- End-to-end analysis pipeline implemented in R with the help of AI 
 
 ---
 
@@ -113,7 +113,7 @@ Capture **dynamic brain states** instead of static connectivity.
 
 ## Technical Contributions
 
-- Built a complete analysis pipeline in R:
+- Built a complete analysis pipeline in R with the help of AI:
   - Data preprocessing and EDA  
   - PCA-based dimensionality reduction  
   - Feature engineering via correlation matrices  
@@ -144,7 +144,8 @@ This project demonstrates the ability to:
 - Work with high-dimensional time series data  
 - Perform dimensionality reduction and feature engineering  
 - Apply unsupervised learning to complex signals  
-- Translate raw data into interpretable insights  
+- Translate raw data into interpretable insights
+- Use AI to enhance code and R pipelines  
 
 **Applications:**
 - Signal processing  
